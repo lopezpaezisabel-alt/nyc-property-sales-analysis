@@ -1,9 +1,12 @@
-# [Project Title]
+# NYC Property Sales Analysis
+
+
 > Analyzed NYC property transaction records from 2016--2025 using Python and Power BI to identify changes in transaction activity and how recorded prices vary by borough, property type, and property characteristics.
 
 ---
 
 ## ⚙️ Project Type Flags
+
 
 - [x] Exploratory Data Analysis (EDA)
 - [ ] SQL Analysis / Querying
@@ -17,6 +20,8 @@
 ---
 
 ## Table of Contents
+
+
 1. [Project Overview](#1-project-overview)
 2. [Objectives](#2-objectives)
 3. [Project Scope & Tools](#3-project-scope--tools)
@@ -34,6 +39,7 @@
 ---
 
 ## 1. Project Overview
+
 
 **Context:** NYC property transactions vary by year, borough, and
 property characteristics. Looking at transaction counts alone does not
@@ -60,6 +66,7 @@ property segments.
 
 ## 2. Objectives
 
+
 - **Primary Objective:** Quantify how recorded NYC property
     transaction activity changed from 2016 through 2025.
 - **Secondary Objective 1:** Compare median positive sale prices
@@ -74,6 +81,7 @@ property segments.
 ---
 
 ## 3. Project Scope & Tools
+
 
 ### Scope
 
@@ -101,6 +109,7 @@ property segments.
 ---
 
 ## 4. Repository Structure
+
 
 ```
 nyc-property-sales-analysis/
@@ -130,6 +139,7 @@ nyc-property-sales-analysis/
 
 ## 5. Data Workflow
 
+
 ```
 NYC Open Data: Citywide Annualized Calendar Sales Update
                          ↓
@@ -149,19 +159,24 @@ NYC Open Data: Citywide Annualized Calendar Sales Update
 1. **Source:** NYC Open Data's *Citywide Annualized Calendar Sales
     Update*, covering calendar years 2016--2025, supplied as a CSV with
     a related data dictionary.
+
 2. **Ingestion:** Loaded the CSV into pandas for profiling and
     cleaning.
+
 3. **Cleaning:** Standardized field types, reviewed missing values and
     duplicate records, and removed fields not needed for the core
     analysis. The raw dataset contained 845,607 rows and 29 columns. The
     cleaned dataset contains 842,256 rows and 20 columns.
+
 4. **Transformation:** Prepared date and numeric fields for analysis
     and created grouped measures and categories for dashboard
     comparisons, including borough names, unit groups, and property-age
     groups.
+
 5. **Analysis:** Used descriptive statistics, year-over-year trend
     analysis, and comparisons by borough, neighborhood, property type,
     unit group, and property age.
+
 6. **Output:** Three Jupyter notebooks, a cleaned dataset for analysis,
     a four-page Power BI report, dashboard screenshots, and this project
     documentation.
@@ -170,109 +185,36 @@ NYC Open Data: Citywide Annualized Calendar Sales Update
 
 ## 6. Data Model & Schema
 
+
 ### Dataset / Table: `[name]`
 
 This is a single transaction-level dataset rather than a relational
 database with multiple joined tables. The cleaned version has **842,256
 rows and 20 columns**.
 
- ----------------------------------------------------------------------------------------
-  Field                              Data Type         Description       Example / Notes
-                                     (cleaned)                           
-  ---------------------------------- ----------------- ----------------- -----------------
-  `BOROUGH`                          Integer / code    Numeric code      1--5; mapped to
-                                                       identifying the   borough names for
-                                                       borough.          reporting.
-
-  `NEIGHBORHOOD`                     Text              Neighborhood      Some values
-                                                       label assigned in include
-                                                       the source data.  `*-UNKNOWN`;
-                                                                         their meaning is
-                                                                         not explained in
-                                                                         the available
-                                                                         dictionary.
-
-  `BUILDING CLASS CATEGORY`          Text              Source            Used to group
-                                                       building-class    property records.
-                                                       category.         
-
-  `TAX CLASS AT PRESENT`             Text / category   Tax class         May be missing
-                                                       recorded in the   for some records.
-                                                       source.           
-
-  `BLOCK`                            Integer / code    Tax block         Retained only if
-                                                       identifier.       present in the
-                                                                         final 20-column
-                                                                         schema.
-
-  `LOT`                              Integer / code    Tax lot           Retained only if
-                                                       identifier.       present in the
-                                                                         final 20-column
-                                                                         schema.
-
-  `BUILDING CLASS AT PRESENT`        Text / category   Present building  May be missing.
-                                                       class.            
-
-  `ADDRESS`                          Text              Recorded property Not used to
-                                                       address.          identify unique
-                                                                         buyers.
-
-  `APARTMENT NUMBER`                 Text              Apartment or unit Often missing for
-                                                       identifier, where non-apartment
-                                                       available.        records.
-
-  `ZIP CODE`                         Numeric / code    Recorded ZIP      Treated as a
-                                                       code.             category, not a
-                                                                         quantity.
-
-  `RESIDENTIAL UNITS`                Numeric           Recorded          Missing values
-                                                       residential unit  are retained
-                                                       count.            unless required
-                                                                         by a specific
-                                                                         analysis.
-
-  `COMMERCIAL UNITS`                 Numeric           Recorded          Missing values
-                                                       commercial unit   may occur.
-                                                       count.            
-
-  `TOTAL UNITS`                      Numeric           Recorded total    Missing values
-                                                       unit count.       may occur.
-
-  `LAND SQUARE FEET`                 Numeric           Recorded land     Many records
-                                                       area in square    contain zero; not
-                                                       feet.             used for size
-                                                                         analysis without
-                                                                         further
-                                                                         validation.
-
-  `GROSS SQUARE FEET`                Numeric           Recorded gross    Many records
-                                                       building area in  contain zero; not
-                                                       square feet.      used for size
-                                                                         analysis without
-                                                                         further
-                                                                         validation.
-
-  `YEAR BUILT`                       Numeric           Recorded year the Used to derive
-                                                       property was      property-age
-                                                       built.            groups after
-                                                                         validity checks.
-
-  `TAX CLASS AT TIME OF SALE`        Text / category   Tax class at      Source
-                                                       sale.             classification.
-
-  `BUILDING CLASS AT TIME OF SALE`   Text / category   Building class at Source
-                                                       sale.             classification.
-
-  `SALE PRICE`                       Integer / numeric Recorded          Zero-price
-                                                       transaction sale  records are
-                                                       price in dollars. retained for
-                                                                         activity counts
-                                                                         and excluded from
-                                                                         positive-price
-                                                                         metrics.
-
-  `SALE DATE`                        Date/time         Recorded          Used for annual
-                                                       transaction date. trend analysis.
+  ----------------------------------------------------------------------------------------
+ | Field | Data Type (cleaned) | Description | Example / Notes |
+|-------|---------------------|-------------|-----------------|
+| `BOROUGH` | Integer / code | Numeric code identifying the borough. | Codes 1–5; mapped to borough names for reporting. |
+| `NEIGHBORHOOD` | Text | Neighborhood label assigned in the source data. | Some values include `*-UNKNOWN`; their meaning is not explained in the available dictionary. |
+| `BUILDING CLASS CATEGORY` | Text | Source building-class category. | Used to group property records. |
+| `TAX CLASS AT PRESENT` | Text / category | Tax class recorded in the source. | May be missing for some records. |
+| `BLOCK` | Integer / code | Tax block identifier. | Retained only if present in the final 20-column schema. |
+| `LOT` | Integer / code | Tax lot identifier. | Retained only if present in the final 20-column schema. |
+| `BUILDING CLASS AT PRESENT` | Text / category | Present building class. | May be missing. |
+| `ADDRESS` | Text | Recorded property address. | Not used to identify unique buyers. |
+| `APARTMENT NUMBER` | Text | Apartment or unit identifier, where available. | Often missing for non-apartment records. |
+| `ZIP CODE` | Numeric / code | Recorded ZIP code. | Treated as a category, not a quantity. |
+| `RESIDENTIAL UNITS` | Numeric | Recorded residential unit count. | Missing values are retained unless required by a specific analysis. |
+| `COMMERCIAL UNITS` | Numeric | Recorded commercial unit count. | Missing values may occur. |
+| `TOTAL UNITS` | Numeric | Recorded total unit count. | Missing values may occur. |
+| `LAND SQUARE FEET` | Numeric | Recorded land area in square feet. | Many records contain zero; not used for size analysis without further validation. |
+| `GROSS SQUARE FEET` | Numeric | Recorded gross building area in square feet. | Many records contain zero; not used for size analysis without further validation. |
+| `YEAR BUILT` | Numeric | Recorded year the property was built. | Used to derive property-age groups after validity checks. |
+| `TAX CLASS AT TIME OF SALE` | Text / category | Tax class at sale. | Source classification. |
+| `BUILDING CLASS AT TIME OF SALE` | Text / category | Building class at sale. | Source classification. |
+| `SALE PRICE` | Integer / numeric | Recorded transaction sale price in dollars. | Zero-price records are retained for activity counts and excluded from positive-price metrics. |
+| `SALE DATE` | Date/time | Recorded transaction date. | Used for annual trend analysis. |
   ----------------------------------------------------------------------------------------
 
 > **Row count (approx.):** 842,256 cleaned records\
@@ -284,6 +226,7 @@ rows and 20 columns**.
 
 ## 7. Analysis & Metrics
 
+
 ### Analytical Approach
 
 This is a descriptive and exploratory analysis, not a causal or
@@ -294,48 +237,29 @@ skewed and can be affected by extreme values.
 
 ### Key Metrics Defined
 
------------------------------------------------------------------------
-  Metric                  Plain-Language          Why It Matters
-                          Definition              
-  ----------------------- ----------------------- -----------------------
-  **Total Transactions**  Count of records in the Measures recorded
-                          selected date range or  transaction activity.
-                          segment, including      
-                          zero-price records.     
-
-  **Positive-Price        Count of records where  Shows how many records
-  Transactions**          `SALE PRICE > 0`.       are eligible for
-                                                  positive sale-price
-                                                  analysis.
-
-  **Zero-Price Share**    Number of records with  Shows how the share of
-                          `SALE PRICE = 0`        zero-price transfers
-                          divided by all          varies over time.
-                          transaction records.    
-
-  **Median Sale Price**   Median `SALE PRICE`     Provides a robust
-                          among records where     measure of typical
-                          `SALE PRICE > 0`.       recorded price while
-                                                  reducing sensitivity to
-                                                  extreme values.
-
-  **Transaction Volume by Count of transaction    Allows comparison of
-  Segment**               records grouped by      activity across market
-                          borough, neighborhood,  segments.
-                          property type, unit     
-                          group, or age group.    
-  -----------------------------------------------------------------------
+| Metric | Plain-Language Definition | Why It Matters |
+|--------|---------------------------|----------------|
+| **Total Transactions** | Count of records in the selected date range or segment, including zero-price records. | Measures recorded transaction activity. |
+| **Positive-Price Transactions** | Count of records where `SALE PRICE > 0`. | Shows how many records are eligible for positive sale-price analysis. |
+| **Zero-Price Share** | Number of records with `SALE PRICE = 0` divided by all transaction records. | Shows how the share of zero-price transfers varies over time. |
+| **Median Sale Price** | Median `SALE PRICE` among records where `SALE PRICE > 0`. | Provides a robust measure of typical recorded price while reducing sensitivity to extreme values. |
+| **Transaction Volume by Segment** | Count of transaction records grouped by borough, neighborhood, property type, unit group, or age group. | Allows comparison of activity across market segments. |
 
 ### Methods Used
 
 -   Data profiling: dataset shape, data types, missingness, and value
     distributions.
+    
 -   Data cleaning and validation: type standardization, duplicate
     review, and export/reload checks.
+
 -   Trend analysis across calendar years 2016--2025.
+
 -   Group comparisons by borough, neighborhood, property type, unit
     group, and property-age group.
+
 -   Median-based sale-price analysis using positive-price records only.
+
 -   Visual analysis using Matplotlib and Power BI.
 
 ---
@@ -386,92 +310,63 @@ characteristics may also contribute to the observed variation.
 These are analytical next steps for a stakeholder using the report, not
 claims that the dataset establishes a cause.
 
-  -----------------------------------------------------------------------
-  Priority          Recommendation    Based On          Suggested Owner
-  ----------------- ----------------- ----------------- -----------------
-  High              Review annual     Insights 1 and 2  Real estate
-                    transaction                         research /
-                    counts alongside                    analytics team
-                    the zero-price                      
-                    share to                            
-                    distinguish                         
-                    changes in                          
-                    recorded activity                   
-                    from changes in                     
-                    positive-price                      
-                    transactions.                       
-
-  Medium            Compare borough   Insight 3         Market research /
-                    and property-type                   strategy team
-                    segments using                      
-                    both transaction                    
-                    volume and median                   
-                    positive sale                       
-                    price before                        
-                    prioritizing a                      
-                    market segment                      
-                    for further                         
-                    review.                             
-
-  Medium            Investigate       Insight 4         Data analytics
-                    property-age                        team
-                    patterns while                      
-                    controlling for                     
-                    borough and                         
-                    property type in                    
-                    a follow-up                         
-                    analysis.                           
-
-  Low               Add complementary Project           Research /
-                    data, such as     limitations       analytics team
-                    interest rates,                     
-                    housing                             
-                    inventory, or                       
-                    other market                        
-                    indicators,                         
-                    before attempting                   
-                    to explain why                      
-                    activity or                         
-                    prices changed.                     
-  -----------------------------------------------------------------------
+  | Priority | Recommendation | Based On | Suggested Owner |
+|----------|----------------|----------|-----------------|
+| **High** | Review annual transaction counts alongside the zero-price share to distinguish changes in recorded activity from changes in positive-price transactions. | Insights 1 and 2 | Real estate research / analytics team |
+| **Medium** | Compare borough and property-type segments using both transaction volume and median positive sale price before prioritizing a market segment for further review. | Insight 3 | Market research / strategy team |
+| **Medium** | Investigate property-age patterns while controlling for borough and property type in a follow-up analysis. | Insight 4 | Data analytics team |
+| **Low** | Add complementary data, such as interest rates, housing inventory, or other market indicators, before attempting to explain why activity or prices changed. | Project limitations | Research / analytics team |
 
 
 ---
 
 ## 11. Assumptions & Limitations
 
+
 ### Assumptions
+
 -   The source's `SALE DATE` field is used to assign records to calendar
     years.
+
 -   A `SALE PRICE` greater than zero is required for positive sale-price
     metrics.
+
 -   Zero-price records are treated as recorded transfers without cash
     consideration according to the source documentation, not as ordinary
     market-price observations.
+
 -   Grouped comparisons describe the records in the dataset and do not
     necessarily represent unique properties or unique buyers.
 
 ### Limitations
+
 -   The dataset records property transactions or ownership transfers,
     not unique buyers. One person or property may appear in multiple
     records.
+
 -   A sale price of zero does not represent a typical market sale price.
     These records are included in transaction counts and excluded from
     positive-price metrics.
+
 -   The source contains substantial zero values in `GROSS SQUARE FEET`
     and `LAND SQUARE FEET` (approximately 89.6% and 92.6%, respectively,
     in the reviewed data). The available dictionary does not explain
     these zeros, so size-based conclusions are not emphasized.
+
 -   Missing values occur in optional property details, including unit
     counts and year built. Analyses requiring these fields may use fewer
     records than overall transaction counts.
+
 -   The source dictionary does not explain all `*-UNKNOWN` neighborhood
     labels. Their cause should not be inferred without further
     documentation.
+
 -   Extreme prices can affect averages and visual scales, so medians are
     preferred for typical-price comparisons.
+
 -   The analysis is descriptive. It does not establish that a particular
     property characteristic or location causes a price difference.
+
 -   Findings depend on the source dataset's coverage, definitions, and
     data quality. No independent reconciliation against a complete
     external transaction registry was performed.
@@ -482,13 +377,17 @@ claims that the dataset establishes a cause.
 
 -   [ ] Validate the final cleaned schema and key totals against the
     latest source documentation.
+
 -   [ ] Add contextual market indicators, such as interest rates or
     housing inventory, to investigate possible explanations for
     year-to-year changes.
+
 -   [ ] Explore property age while controlling for borough and property
     type.
+
 -   [ ] Automate repeatable data validation and reporting if the source
     data is updated in future.
+
 -   [ ] Add a documented comparison of results before and after key
     cleaning decisions.
 
