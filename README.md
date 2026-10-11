@@ -69,9 +69,7 @@ property segments.
 
 - **Primary Objective:** Quantify how recorded NYC property
     transaction activity changed from 2016 through 2025.
-- **Secondary Objective 1:** Compare median positive sale prices
-    across boroughs, property types, unit groups, and property-age
-    groups.
+- **Secondary Objective 1:** Compare median positive sale prices across boroughs and property types, and examine how property age relates to median sale price.
 - **Secondary Objective 2:** Prepare a reproducible cleaning workflow
     that documents missing values, duplicate handling, zero-price
     records, and retained fields.
@@ -87,7 +85,7 @@ property segments.
 
 | Dimension | Details |
 |-----------|---------|
-| **In Scope** | NYC property transaction records, annual transaction trends, borough and neighborhood compariosns, property types, unit groups, property age, and sale-price metrics. |
+| **In Scope** | NYC property transaction records, annual transaction trends, borough and neighborhood comparisons, property types, property age, and sale-price metrics. |
 | **Out of Scope** | Predictive modeling, casual explanations for price differences, individual buyer behavior, mortgage or rental-market analysis, and estimating total market value from transaction counts and median prices. These require additional data or methods beyond this descriptive project. |
 | **Time Period** | Calendar years 2016--2025. |
 | **Granularity** | Transaction-record level in the source datase, with grouped summaries used for comparisons and dashboard visuals. Records represent recorded property transactions or ownership transfers, not necessarily unique buyers. |
@@ -198,20 +196,20 @@ rows and 20 columns**.
  | Field | Data Type (cleaned) | Description | Example / Notes |
 |-------|---------------------|-------------|-----------------|
 | `BOROUGH` | Integer / code | Numeric code identifying the borough. | Codes 1–5; mapped to borough names for reporting. |
-| `NEIGHBORHOOD` | Text | Neighborhood label assigned in the source data. | Some values include `*-UNKNOWN`; their meaning is not explained in the available dictionary. |
+| `NEIGHBORHOOD` | Text | Neighborhood label assigned in the source data. | Some values include `*-UNKNOWN`. Their meaning is not explained in the available dictionary. |
 | `BUILDING CLASS CATEGORY` | Text | Source building-class category. | Used to group property records. |
 | `TAX CLASS AT PRESENT` | Text / category | Tax class recorded in the source. | May be missing for some records. |
-| `BLOCK` | Integer / code | Tax block identifier. | Retained only if present in the final 20-column schema. |
-| `LOT` | Integer / code | Tax lot identifier. | Retained only if present in the final 20-column schema. |
-| `BUILDING CLASS AT PRESENT` | Text / category | Present building class. | May be missing. |
-| `ADDRESS` | Text | Recorded property address. | Not used to identify unique buyers. |
+| `BLOCK` | Integer / code | Tax block identifier. | Retained in the cleaned dataset. |
+| `LOT` | Integer / code | Tax lot identifier. | Retained in the cleaned dataset. |
+| `BUILDING CLASS AT PRESENT` | Text / category | Present building class. | May be missing for some records. |
+| `ADDRESS` | Text | Recorded property address. | Canont by used to identify unique buyers. |
 | `APARTMENT NUMBER` | Text | Apartment or unit identifier, where available. | Often missing for non-apartment records. |
 | `ZIP CODE` | Numeric / code | Recorded ZIP code. | Treated as a category, not a quantity. |
 | `RESIDENTIAL UNITS` | Numeric | Recorded residential unit count. | Missing values are retained unless required by a specific analysis. |
 | `COMMERCIAL UNITS` | Numeric | Recorded commercial unit count. | Missing values may occur. |
 | `TOTAL UNITS` | Numeric | Recorded total unit count. | Missing values may occur. |
-| `LAND SQUARE FEET` | Numeric | Recorded land area in square feet. | Many records contain zero; not used for size analysis without further validation. |
-| `GROSS SQUARE FEET` | Numeric | Recorded gross building area in square feet. | Many records contain zero; not used for size analysis without further validation. |
+| `LAND SQUARE FEET` | Numeric | Recorded land area in square feet. | Many records contain zero. Not used for size analysis without further validation. |
+| `GROSS SQUARE FEET` | Numeric | Recorded gross building area in square feet. | Many records contain zero. Not used for size analysis without further validation. |
 | `YEAR BUILT` | Numeric | Recorded year the property was built. | Used to derive property-age groups after validity checks. |
 | `TAX CLASS AT TIME OF SALE` | Text / category | Tax class at sale. | Source classification. |
 | `BUILDING CLASS AT TIME OF SALE` | Text / category | Building class at sale. | Source classification. |
@@ -300,7 +298,7 @@ groups.**
 
 Median positive sale prices differ across property types, unit groups,
 and property-age categories. These differences are descriptive
-associations; location, property type, and other unmeasured
+associations. Location, property type, and other unmeasured
 characteristics may also contribute to the observed variation.
 
 
