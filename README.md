@@ -115,9 +115,9 @@ property segments.
 nyc-property-sales-analysis/
 ├── data/
 │   ├── raw/
-│   │   └── nyc_sales_property_raw.csv
+│   │   └── README.md
 │   └── processed/
-│       └── nyc_sales_property_cleaned.csv
+│       └── README.md
 ├── docs/
 │   └── Annualized_Calendar_Sales_Update_Data_Dictionary.xlsx
 ├── notebooks/
@@ -130,10 +130,12 @@ nyc-property-sales-analysis/
 │   ├── Location & Property Characteristics.png
 │   ├── Market Composition & Value.png
 │   ├── Market Overview.png
-│   └── MArket Segments & Business Findings.png
+│   └── Market Segments & Business Findings.png
 ├── .gitignore
 └── README.md
 ```
+
+**Note:** The raw and processed CSV datasets are excluded from Git tracking to keep the repository lightweight. The `data/raw/README.md` documents the original source data, and the `data/processed/README.md` provides access to the downloadable cleaned dataset.
 
 ---
 
@@ -186,7 +188,7 @@ NYC Open Data: Citywide Annualized Calendar Sales Update
 ## 6. Data Model & Schema
 
 
-### Dataset / Table: `[name]`
+### Dataset / Table: `nyc_sales_property_cleaned`
 
 This is a single transaction-level dataset rather than a relational
 database with multiple joined tables. The cleaned version has **842,256
@@ -395,44 +397,17 @@ claims that the dataset establishes a cause.
 
 ## 13. Deliverables
 
------------------------------------------------------------------------------------------------------
-  Deliverable             Description                 Location
-  ----------------------- --------------------------- -------------------------------------------------
-  Raw dataset             Original source CSV,        `data/raw/nyc_sales_property_raw.csv`
-                          preserved without edits.    
-
-  Profiling notebook      Reviews dataset structure,  `notebooks/01_data_profiling.ipynb`
-                          data types, missingness,    
-                          and distributions.          
-
-  Cleaning notebook       Documents cleaning          `notebooks/02_data_cleaning.ipynb`
-                          decisions, validation, and  
-                          cleaned-data export.        
-
-  EDA notebook            Performs descriptive        `notebooks/03_exploratory_analysis.ipynb`
-                          analysis and selected       
-                          visualizations.             
-
-  Cleaned dataset         Transaction-level data      `data/processed/nyc_sales_property_cleaned.csv`
-                          prepared for analysis.      (may be local-only / gitignored)
-
-  Data dictionary         Reference definitions for   `docs/`
-                          source fields.              
-
-  Power BI report         Four-page dashboard         `reports/nyc_property_sales_dashboard.pbix`
-                          covering overview,          
-                          composition/value,          
-                          location/characteristics,   
-                          and business findings.      
-
-  Dashboard screenshots   Static previews of the four `visuals/`
-                          report pages.               
-
-  Project documentation   Overview, methods,          `README.md`
-                          findings, limitations, and  
-                          deliverables.               
-  -----------------------------------------------------------------------------------------------------
-
+| Deliverable | Description | Location |
+|-------------|-------------|----------|
+| **Raw dataset** | Original NYC property sales CSV, preserved without edits. See the data source and access details in the folder README. | `data/raw/README.md` |
+| **Profiling notebook** | Reviews dataset structure, data types, missingness, and distributions. | `notebooks/01_data_profiling.ipynb` |
+| **Cleaning notebook** | Documents cleaning decisions, validation, and cleaned-data export. | `notebooks/02_data_cleaning.ipynb` |
+| **EDA notebook** | Performs descriptive analysis and selected visualizations. | `notebooks/03_exploratory_analysis.ipynb` |
+| **Cleaned dataset** | Processed NYC property sales data used in this analysis, available as a downloadable ZIP file. | `data/processed/README.md` |
+| **Data dictionary** | Reference definitions for source fields. | `docs/` |
+| **Power BI report** | Four-page dashboard covering overview, composition/value, location/characteristics, and business findings. | `reports/nyc_property_sales_dashboard.pbix` |
+| **Dashboard screenshots** | Static previews of the four report pages. | `visuals/` |
+| **Project documentation** | Overview, methods, findings, limitations, and deliverables. | `README.md` |
 
 ---
 
@@ -442,9 +417,9 @@ claims that the dataset establishes a cause.
 
 Aspiring Business Analyst
 
-- 🔗 LinkedIn: [LinkedIn URL]
-- 💼 Portfolio: [Portfolio or GitHub profile URL]
-- 📧 Email: [Email - optional]
+- 🔗 LinkedIn: [LinkedIn URL](https://www.linkedin.com/in/isabelplopezpaez/?isSelfProfile=true)
+- 💼 Portfolio: [Portfolio or GitHub profile URL](https://github.com/lopezpaezisabel-alt)
+- 📧 Email: [Email](mailto:lopezpaezisabel@gmail.com)
 
 ---
 
