@@ -13,6 +13,9 @@ data/external/*
 !data/external/README.md
 desktop.ini
 
+# Local compressed dataset copy
+nyc_sales_property_cleaned.zip
+
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
