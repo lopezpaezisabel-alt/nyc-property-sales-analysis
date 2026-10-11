@@ -418,7 +418,7 @@ claims that the dataset establishes a cause.
 Aspiring Business Analyst
 
 - 🔗 LinkedIn: [LinkedIn URL](https://www.linkedin.com/in/isabelplopezpaez/?isSelfProfile=true)
-- 💼 Portfolio: [Portfolio or GitHub profile URL](https://github.com/lopezpaezisabel-alt)
+- 💼 Portfolio: [Github Portfolio](https://github.com/lopezpaezisabel-alt)
 - 📧 Email: [Email](mailto:lopezpaezisabel@gmail.com)
 
 ---
